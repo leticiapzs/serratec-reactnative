@@ -20,13 +20,12 @@ const emailData = [
     snippet: 'Configurações de notificação Residentes 2...',
     time: '28 de out.',
   },
-  // Mais dados aqui, se necessário...
+  
 ];
 
 export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   
-  // Filtra os emails com base no texto da pesquisa
   const filteredData = emailData.filter(item =>
     item.sender.toLowerCase().includes(searchQuery.toLowerCase()) ||
     item.subject.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -56,7 +55,7 @@ export default function App() {
       </View>
 
       <FlatList
-        data={filteredData} // Mostra os dados filtrados
+        data={filteredData} 
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View style={styles.emailItem}>
