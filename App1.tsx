@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, StatusBar } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { styles } from './styles2';
+import { styles } from './styles';
 
 export default function App() {
   return (

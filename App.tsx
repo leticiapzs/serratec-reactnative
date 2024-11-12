@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, StatusBar, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { styles } from './styles';
+import { styles } from './styles1';
 
 const emailData = [
   {
