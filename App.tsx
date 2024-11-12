@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, StatusBar, FlatList } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, StyleSheet, StatusBar, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { styles } from './styles1';
 
@@ -20,17 +20,34 @@ const emailData = [
     snippet: 'Configurações de notificação Residentes 2...',
     time: '28 de out.',
   },
+  // Mais dados aqui, se necessário...
 ];
 
 export default function App() {
+  const [searchQuery, setSearchQuery] = useState('');
+  
+  // Filtra os emails com base no texto da pesquisa
+  const filteredData = emailData.filter(item =>
+    item.sender.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.subject.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.snippet.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#FFF8F0" barStyle="dark-content" />
 
       <View style={styles.header}>
         <Icon name="menu" size={30} color="#555555" style={styles.menuIcon} />
+        
         <View style={styles.searchBox}>
-          <Text style={styles.searchText}>Pesquisar no e-mail</Text>
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Pesquisar no e-mail"
+            placeholderTextColor="#888888"
+            value={searchQuery}
+            onChangeText={text => setSearchQuery(text)}
+          />
         </View>
         
         <View style={styles.profileCircle}>
@@ -39,7 +56,7 @@ export default function App() {
       </View>
 
       <FlatList
-        data={emailData}
+        data={filteredData} // Mostra os dados filtrados
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View style={styles.emailItem}>
@@ -52,6 +69,11 @@ export default function App() {
               <Text style={styles.emailSnippet}>{item.snippet}</Text>
             </View>
             <Text style={styles.emailTime}>{item.time}</Text>
+          </View>
+        )}
+        ListEmptyComponent={() => (
+          <View style={styles.emptyMessage}>
+            <Text style={styles.messageText}>Nenhum e-mail encontrado</Text>
           </View>
         )}
       />
@@ -73,4 +95,3 @@ export default function App() {
     </View>
   );
 }
-

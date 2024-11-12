@@ -21,9 +21,12 @@ export const styles = StyleSheet.create({
     backgroundColor: '#F6E6D6',
     borderRadius: 20,
   },
-  searchText: {
+  // Novo estilo para o TextInput
+  searchInput: {
     fontSize: 16,
-    color: '#999',
+    color: '#000',  // Cor do texto digitado
+    paddingVertical: 4,
+    paddingHorizontal: 8,
   },
   profileCircle: {
     width: 32,
