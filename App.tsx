@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, StatusBar, FlatList } from 'react-native';
+import { View, Text, TextInput, StyleSheet, StatusBar, FlatList, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { styles } from './styles1';
 
@@ -37,7 +37,9 @@ export default function App() {
       <StatusBar backgroundColor="#FFF8F0" barStyle="dark-content" />
 
       <View style={styles.header}>
-        <Icon name="menu" size={30} color="#555555" style={styles.menuIcon} />
+        <TouchableOpacity>
+          <Icon name="menu" size={30} color="#555555" style={styles.menuIcon} />
+        </TouchableOpacity>
         
         <View style={styles.searchBox}>
           <TextInput
@@ -58,7 +60,7 @@ export default function App() {
         data={filteredData} 
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <View style={styles.emailItem}>
+          <TouchableOpacity style={styles.emailItem}>
             <View style={styles.iconCircle}>
               <Text style={styles.iconText}>{item.icon}</Text>
             </View>
@@ -68,7 +70,7 @@ export default function App() {
               <Text style={styles.emailSnippet}>{item.snippet}</Text>
             </View>
             <Text style={styles.emailTime}>{item.time}</Text>
-          </View>
+          </TouchableOpacity>
         )}
         ListEmptyComponent={() => (
           <View style={styles.emptyMessage}>
@@ -77,10 +79,10 @@ export default function App() {
         )}
       />
 
-      <View style={styles.writeButton}>
+      <TouchableOpacity style={styles.writeButton}>
         <Icon name="pencil-outline" size={20} color="#555555" style={{ marginRight: 8 }} />
         <Text style={styles.writeText}>Escrever</Text>
-      </View>
+      </TouchableOpacity>
 
       <View style={styles.footer}>
         <View style={styles.iconContainer}>
